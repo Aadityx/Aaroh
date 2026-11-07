@@ -1,113 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;600&family=Space+Grotesk:wght@500;600;700&family=Sora:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+:root,
+[data-theme='aurora'] {
+  --bg: #070918;
+  --surface: rgba(255, 255, 255, .05);
+  --surface-2: rgba(255, 255, 255, .1);
+  --border: rgba(255, 255, 255, .1);
+  --text: #eef0ff;
+  --muted: #8f95c2;
+  --accent: #8b5cf6;
+  --accent-fg: #fff;
+  --grad: linear-gradient(135deg, #8b5cf6, #60a5fa);
+  --glow: 0 0 40px -8px rgba(139, 92, 246, .65);
+  --blob1: #7c3aed;
+  --blob2: #2563eb;
+  --blob3: #06b6d4;
+  --blob-op: .35;
+  --radius: 18px;
+  --blur: 22px;
+  --font-display: 'Space Grotesk', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+[data-theme='ivory'] {
+  --bg: #f6f1e6;
+  --surface: rgba(255, 255, 255, .72);
+  --surface-2: rgba(255, 255, 255, .95);
+  --border: rgba(40, 30, 20, .12);
+  --text: #23201c;
+  --muted: #7a7266;
+  --accent: #6d4fc2;
+  --accent-fg: #fff;
+  --grad: linear-gradient(135deg, #6d4fc2, #b99a55);
+  --glow: 0 12px 30px -14px rgba(109, 79, 194, .5);
+  --blob1: #e8d6a6;
+  --blob2: #d8ccf4;
+  --blob3: #f2dfc2;
+  --blob-op: .7;
+  --radius: 6px;
+  --blur: 6px;
+  --font-display: 'Fraunces', serif;
+}
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+[data-theme='ember'] {
+  --bg: #0b0907;
+  --surface: rgba(255, 150, 60, .045);
+  --surface-2: rgba(255, 150, 60, .1);
+  --border: rgba(255, 160, 80, .15);
+  --text: #fff6ec;
+  --muted: #a8927c;
+  --accent: #f97316;
+  --accent-fg: #1a0e05;
+  --grad: linear-gradient(135deg, #f97316, #f5a524 60%, #c2733a);
+  --glow: 0 0 36px -10px rgba(249, 115, 22, .7);
+  --blob1: #c2410c;
+  --blob2: #b45309;
+  --blob3: #7c2d12;
+  --blob-op: .3;
+  --radius: 10px;
+  --blur: 14px;
+  --font-display: 'Sora', sans-serif;
 }
 
 body {
   margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+  transition: background .6s, color .6s;
+  min-height: 100vh
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+* {
+  transition: border-color .4s, background-color .4s, box-shadow .4s
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+.display {
+  font-family: var(--font-display);
+  letter-spacing: -.02em
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+.gradient-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent
 }
 
-code,
-.counter {
-  font-family: var(--mono);
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(var(--blur));
+  border-radius: var(--radius);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .05) inset, 0 20px 50px -30px #000
+}
+
+.btn {
   display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+  align-items: center;
+  gap: .5rem;
+  padding: .65rem 1.1rem;
+  font-weight: 600;
+  font-size: .9rem;
+  border-radius: calc(var(--radius) - 4px);
+  cursor: pointer;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--surface)
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.btn:hover {
+  background: var(--surface-2)
+}
+
+.btn:focus-visible,
+.field:focus-visible,
+.navbtn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px
+}
+
+.btn-primary {
+  background: var(--grad);
+  color: var(--accent-fg);
+  border: 0;
+  box-shadow: var(--glow)
+}
+
+.btn-primary:hover {
+  background: var(--grad);
+  filter: brightness(1.1)
+}
+
+.btn:disabled {
+  opacity: .5;
+  cursor: not-allowed
+}
+
+.field {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: calc(var(--radius) - 4px);
+  padding: .75rem .9rem;
+  font: inherit;
+  resize: vertical
+}
+
+.field:focus {
+  border-color: var(--accent)
+}
+
+.muted {
+  color: var(--muted)
+}
+
+.skeleton {
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--surface), var(--surface-2), var(--surface));
+  background-size: 200% 100%;
+  animation: sk 1.4s infinite
+}
+
+@keyframes sk {
+  to {
+    background-position: -200% 0
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  * {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important
+  }
 }
